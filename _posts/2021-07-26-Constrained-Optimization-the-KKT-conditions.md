@@ -9,8 +9,7 @@ math: true
 
 
 <div style="display:none">
-Duality is a core concept of optimization that can be elusive and difficult to grasp initially. In this post I present an intuitive description
-of constrained optimization and duality. It is by no means self-contained. A bit of background knowledge in constrained optimization is assumed. This post is mostly useful for those who would like a more concise and intuitive take of some core ideas.
+In this post I present an intuitive description of constrained optimization. It is by no means self-contained. A bit of background knowledge in constrained optimization is assumed. This post is mostly useful for those who would like a more concise and intuitive take of some core ideas, or a brief introduction to Chapter 12 of Numerical Optimization by Nocedal and Wright.
 </div>
 
 <div style="display:none">
@@ -31,9 +30,8 @@ $$
 
 </div>
 
-
-Duality is a core concept of optimization that can be elusive and difficult to grasp initially. In this post I present an intuitive description
-of constrained optimization and duality. It is by no means self-contained. A bit of background knowledge in constrained optimization is assumed. This post is mostly useful for those who would like a more concise and intuitive take of some core ideas. This post is best used as a roadmap to Chapter 12 of Numerical Optimization.
+In this post I present an intuitive description
+of constrained optimization. It is by no means self-contained. A bit of background knowledge in constrained optimization is assumed. This post is mostly useful for those who would like a more concise and intuitive take of some core ideas. This post is best used as a roadmap to Chapter 12 of Numerical Optimization by Nocedal and Wright.
 
 Basically we want to solve problems of the form:
 
@@ -173,9 +171,9 @@ $$
 \end{equation}
 $$
 
-Add in an inequality constraint $$c_3(x)$$. It could be that $$\nabla f(x) \notin span\{\nabla c_1(x) , \nabla c_2(x)\}$$, yet $$\nabla f(x) = \lambda_3 c_3(x)$$ for some $$\lambda_3 > 0$$. It could also be that
+Add in an inequality constraint $$c_3(x)$$. It could be that $$\nabla f(x) \notin span\{\nabla c_1(x) , \nabla c_2(x)\}$$, yet $$\nabla f(x) = \lambda_3 \nabla c_3(x)$$ for some $$\lambda_3 > 0$$.
 
-Note that the set of feasible descent directions at $$x$$ is a cone of the form:
+Note that the set of feasible directions at $$x$$ is a cone of the form:
 
 $$
 \begin{equation}
@@ -183,22 +181,21 @@ K = \{B y + C w: y \geq 0\}
 \end{equation}
 $$
 
-Where $$B$$ is a matrix whose rows are $$\{\nabla c_i(x)\}$$ for $$i \in \mathcal{I} \cap \mathcal{A}$$. And $$C$$ is a matrix whose columns span the subspace orthogonal to $$\{\nabla c_i(x)\}$$ for $$i \in \mathcal{E}$$.
+Where $$B$$ is a matrix whose rows are $$\{\nabla c_i(x)\}$$ for $$i \in \mathcal{I} \cap \mathcal{A}$$. And $$C$$ is a matrix whose columns span the subspace orthogonal to $$\{\nabla c_i(x)\}$$ for $$i \in \mathcal{E}$$. We can now say that $$d$$ is a feasible *descent* direction if $$d \in K$$ and $$d^T \nabla f(x) < 0$$. What remains is obtaining conditions under which the set of feasible descent directions is empty. This will require Farkas' Lemma.
 
-###Farkas' Lemma:
+### Farkas' Lemma:
 
 For any $$d$$ \in $$\mathbb{R}^{n}$$, exactly one of the following is true:
+
 - either $$d \in K$$
 - $$\exists$$ $$g \in \mathbb{R}^{n}$$ such that $$g^T d \leq 0$$, $$B^Tg > 0$$, $$C^Tg = 0$$.
 
+To derive conditions under which the set of feasible descent directions is empty, we
+need to find conditions under which all vectors $$d$$ such that $$d^T \nabla f(x) < 0$$ are not in $$K$$. Using Farkas' Lemma, if $$B^T \nabla f(x) \geq 0$$ and $$C^T \nabla f(x) = 0$$, then $$d$$ cannot be in $$K$$. Notice how these conditions correspond to the KKT condition.
 
+$$\nabla f(x) = \sum_{i \in \mathcal{I} \cap \mathcal{A}} \lambda_i \nabla c_i(x) + \sum_{i \in \mathcal{E}} \lambda_i \nabla c_i(x)$$
 
+-  $$\nabla f(x)^T \nabla c_i(x) \geq 0 $$ for $$i \in \mathcal{I} \cap \mathcal{A}$$ $$\rightarrow \lambda_i \geq 0$$ for $$i \in \mathcal{I} \cap \mathcal{A}$$
 
-
-
-
-
-
-
-
-- What is the point of Farkas's Lemma?
+## References
+{% bibliography --file numerical_opt %}
