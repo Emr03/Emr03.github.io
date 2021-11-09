@@ -116,7 +116,8 @@ deploy() {
 }
 
 main() {
-  init
+  #init
+  _baseurl="$(grep '^baseurl:' _config.yml | sed "s/.*: *//;s/['\"]//g;s/#.*//")" 
   build
   test
   resume_site_dir
