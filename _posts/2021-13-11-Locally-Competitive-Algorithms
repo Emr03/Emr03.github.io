@@ -1,0 +1,23 @@
+---
+title: Locally Competitive Algorithms
+author: Elsa Riachi
+categories: [Notes]
+tags: [sparsity, biologically-plausible NN]
+date: 2021-11-08
+math: true
+---
+<div style="display:none">
+$$
+\newcommand\testmacro[2]{\mathbf{F\alpha}(#1)^{#2}}
+\def\norm#1{\left\|{#1}\right\|} % A norm with 1 argument
+\newcommand\zeronorm[1]{\norm{#1}_0} % L0 norm
+\newcommand\onenorm[1]{\norm{#1}_1} % L1 norm
+\newcommand\twonorm[1]{\norm{#1}_2} % L2 norm
+\def\<{\left\langle} % Angle brackets
+\def\>{\right\rangle}
+\newcommand\inner[1]{\langle #1 \rangle} % inner product
+\newcommand\argmax{\mathop\mathrm{arg max}} % Defining math symbols
+\newcommand\argmin{\mathop\mathrm{arg min}}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+$$
